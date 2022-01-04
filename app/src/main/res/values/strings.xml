@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MilkMan</string>
+    <string-array name="day">
+        <item>Morning</item>
+        <item>Evening</item>
+        <item>Other</item>
+        </string-array>
+</resources>
