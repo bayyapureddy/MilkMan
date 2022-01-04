@@ -2,7 +2,10 @@ package com.company.milkman;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -30,7 +33,9 @@ public class MainActivity extends AppCompatActivity {
     private double fatPercentage = 0.0;
     private double grandTotal = 0.0;
 
-    private Button buttonOk;
+    private Button buttonOk, buttonClear;
+
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +104,8 @@ public class MainActivity extends AppCompatActivity {
         editTextFat10 = findViewById(R.id.editTextFat10);
         editTextFat11 = findViewById(R.id.editTextFat11);
 
+        editTextMilkRateEditor = findViewById(R.id.editTextMilkRateEditor);
+
 
 //        editTextQuantiy1.setText(quantity1);
 //        editTextQuantiy2.setText(quantity2);
@@ -137,18 +144,176 @@ public class MainActivity extends AppCompatActivity {
 //        textViewDayTotal1.setText(day11);
 
         buttonOk = findViewById(R.id.buttonOk);
+        buttonClear = findViewById(R.id.buttonClear);
+
+
+//        quantity1 = Integer.parseInt(editTextQuantiy1.getText().toString());
+//        quantity2 = Integer.parseInt(editTextQuantiy2.getText().toString());
+//        quantity3 = Integer.parseInt(editTextQuantiy3.getText().toString());
+//        quantity4 = Integer.parseInt(editTextQuantiy4.getText().toString());
+//        quantity5 = Integer.parseInt(editTextQuantiy5.getText().toString());
+//        quantity6 = Integer.parseInt(editTextQuantiy6.getText().toString());
+//        quantity7 = Integer.parseInt(editTextQuantiy7.getText().toString());
+//        quantity8 = Integer.parseInt(editTextQuantiy8.getText().toString());
+//        quantity9 = Integer.parseInt(editTextQuantiy9.getText().toString());
+//        quantity10 = Integer.parseInt(editTextQuantiy10.getText().toString());
+//        quantity11 = Integer.parseInt(editTextQuantiy11.getText().toString());
+//
+//        fat1 = Integer.parseInt(editTextFat1.getText().toString());
+//        fat2 = Integer.parseInt(editTextFat2.getText().toString());
+//        fat3 = Integer.parseInt(editTextFat3.getText().toString());
+//        fat4 = Integer.parseInt(editTextFat4.getText().toString());
+//        fat5 = Integer.parseInt(editTextFat5.getText().toString());
+//        fat6 = Integer.parseInt(editTextFat6.getText().toString());
+//        fat7 = Integer.parseInt(editTextFat7.getText().toString());
+//        fat8 = Integer.parseInt(editTextFat8.getText().toString());
+//        fat9 = Integer.parseInt(editTextFat9.getText().toString());
+//        fat10 = Integer.parseInt(editTextFat10.getText().toString());
+//        fat11 = Integer.parseInt(editTextFat11.getText().toString());
 
         buttonOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                rateCalculation();
-            }
-        });
+                milkRate = Integer.parseInt(editTextMilkRateEditor.getText().toString());
 
-//        buttonClear
+                if(TextUtils.isEmpty(editTextQuantiy1.getText().toString())){
+                    editTextQuantiy1.setText("" + 0);
+                    if(TextUtils.isEmpty(editTextFat1.getText().toString())){
+                        editTextFat1.setText(""+0);
+                    }else{
+                        quantity1 = Integer.parseInt(editTextQuantiy1.getText().toString());
+                        fat1 = Integer.parseInt(editTextFat1.getText().toString());
+                        int day1 = (milkRate * quantity1 * fat1) / 10;
+                    }
+                }else if(TextUtils.isEmpty(editTextQuantiy2.getText().toString())){
+                    editTextQuantiy2.setText(""+0);
+                    if(TextUtils.isEmpty(editTextFat2.getText().toString())){
+                        editTextFat2.setText(""+0);
+                    }else{
+                        quantity2 = Integer.parseInt(editTextQuantiy2.getText().toString());
+                        fat2 = Integer.parseInt(editTextFat2.getText().toString());
+                        int day2 = (milkRate * quantity2 * fat2) / 10;
+                    }
+                }else if(TextUtils.isEmpty(editTextQuantiy3.getText().toString())){
+                    editTextQuantiy3.setText(""+0);
+                    if(TextUtils.isEmpty(editTextFat2.getText().toString())){
+                        editTextFat3.setText(""+0);
+                    }else{
+                        quantity3 = Integer.parseInt(editTextQuantiy3.getText().toString());
+                        fat3 = Integer.parseInt(editTextFat3.getText().toString());
+                        int day3 = (milkRate * quantity3 * fat3) / 10;
+                    }
+                }else if(TextUtils.isEmpty(editTextQuantiy4.getText().toString())){
+                    editTextQuantiy4.setText(""+0);
+                    if(TextUtils.isEmpty(editTextFat4.getText().toString())){
+                        editTextFat4.setText(""+0);
+                    }else{
+                        quantity4 = Integer.parseInt(editTextQuantiy4.getText().toString());
+                        fat4 = Integer.parseInt(editTextFat4.getText().toString());
+                        int day4 = (milkRate * quantity4 * fat4) / 10;
+                    }
+                }else if(TextUtils.isEmpty(editTextQuantiy5.getText().toString())){
+                    editTextQuantiy5.setText(""+0);
+                    if(TextUtils.isEmpty(editTextFat5.getText().toString())){
+                        editTextFat5.setText(""+0);
+                    }else{
+                        quantity5 = Integer.parseInt(editTextQuantiy5.getText().toString());
+                        fat5 = Integer.parseInt(editTextFat5.getText().toString());
+                        int day5 = (milkRate * quantity5 * fat5) / 10;
+                    }
+                }else if(TextUtils.isEmpty(editTextQuantiy6.getText().toString())){
+                    editTextQuantiy6.setText(""+0);
+                    if(TextUtils.isEmpty(editTextFat6.getText().toString())){
+                        editTextFat6.setText(""+0);
+                    }else{
+                        quantity6 = Integer.parseInt(editTextQuantiy6.getText().toString());
+                        fat6 = Integer.parseInt(editTextFat6.getText().toString());
+                        int day6 = (milkRate * quantity6 * fat6) / 10;
+                    }
+                }else if(TextUtils.isEmpty(editTextQuantiy7.getText().toString())){
+                    editTextQuantiy7.setText(""+0);
+                    if(TextUtils.isEmpty(editTextFat7.getText().toString())){
+                        editTextFat7.setText(""+0);
+                    }else{
+                        quantity7 = Integer.parseInt(editTextQuantiy7.getText().toString());
+                        fat7 = Integer.parseInt(editTextFat7.getText().toString());
+                        int day7 = (milkRate * quantity7 * fat7) / 10;
+                    }
+                }else if(TextUtils.isEmpty(editTextQuantiy8.getText().toString())){
+                    editTextQuantiy8.setText(""+0);
+                    if(TextUtils.isEmpty(editTextFat8.getText().toString())){
+                        editTextFat8.setText(""+0);
+                    }else{
+                        quantity8 = Integer.parseInt(editTextQuantiy8.getText().toString());
+                        fat8 = Integer.parseInt(editTextFat8.getText().toString());
+                        int day8 = (milkRate * quantity8 * fat8) / 10;
+                    }
+                }else if(TextUtils.isEmpty(editTextQuantiy9.getText().toString())){
+                    editTextQuantiy9.setText(""+0);
+                    if(TextUtils.isEmpty(editTextFat9.getText().toString())){
+                        editTextFat9.setText(""+0);
+                    }else{
+                        quantity9 = Integer.parseInt(editTextQuantiy9.getText().toString());
+                        fat9 = Integer.parseInt(editTextFat9.getText().toString());
+                        int day9 = (milkRate * quantity9 * fat1) / 10;
+                    }
+                }else if(TextUtils.isEmpty(editTextQuantiy10.getText().toString())){
+                    editTextQuantiy10.setText(""+0);
+                    if(TextUtils.isEmpty(editTextFat10.getText().toString())){
+                        editTextFat10.setText(""+0);
+                    }else{
+                        quantity10 = Integer.parseInt(editTextQuantiy10.getText().toString());
+                        fat10 = Integer.parseInt(editTextFat10.getText().toString());
+                        int day10 = (milkRate * quantity10 * fat10) / 10;
+                    }
+                }else if(TextUtils.isEmpty(editTextQuantiy11.getText().toString())){
+                    editTextQuantiy11.setText("" + 0);
+                    if(TextUtils.isEmpty(editTextFat11.getText().toString())){
+                        editTextFat11.setText("" + 0);
+                    } else {
+                        quantity11 = Integer.parseInt(editTextQuantiy11.getText().toString());
+                        fat11 = Integer.parseInt(editTextFat11.getText().toString());
+                        int day11 = (milkRate * quantity11 * fat11) / 10;
+                    }
+                }
+                else{
+
+//                int day2 = (milkRate * quantity2 * fat2) / 10;
+//                int day3 = (milkRate * quantity3 * fat3) / 10;
+//                int day4 = (milkRate * quantity4 * fat4) / 10;
+//                int day5 = (milkRate * quantity5 * fat5) / 10;
+//                int day6 = (milkRate * quantity6 * fat6) / 10;
+//                int day7 = (milkRate * quantity7 * fat7) / 10;
+//                int day8 = (milkRate * quantity8 * fat8) / 10;
+//                int day9 = (milkRate * quantity9 * fat9) / 10;
+//                int day10 = (milkRate * quantity10 * fat10) / 10;
+//                int day11 = (milkRate * quantity11 * fat11) / 10;
+
+                textViewDayTotal1.setText(""+day1);
+                textViewDayTotal2.setText(""+day2);
+                textViewDayTotal3.setText(""+day3);
+                textViewDayTotal4.setText(""+day4);
+                textViewDayTotal5.setText(""+day5);
+                textViewDayTotal6.setText(""+day6);
+                textViewDayTotal7.setText(""+day7);
+                textViewDayTotal8.setText(""+day8);
+                textViewDayTotal9.setText(""+day9);
+                textViewDayTotal10.setText(""+day10);
+                textViewDayTotal11.setText(""+day11);
+
+                totalQuantity = (quantity1 + quantity2 + quantity3 + quantity4 + quantity5 + quantity6 + quantity7 + quantity8+ quantity9 + quantity10+ quantity11);
+                textViewQuantityTotal.setText(""+totalQuantity);
+
+//        fatPercentage = ( fat1 + fat2 + fat3 +fat4 +fat5 +fat6 +fat7 +fat8 + fat9 + fat10 + fat11) / 11;
+//        textViewFatTotal.setText(fatPercentage);
+
+                grandTotal = Double.valueOf( day1 + day2 + day3 + day4 + day5 + day6 + day7 + day8 + day9 + day10 + day11);
+                textViewGrandTotal.setText(""+(int) grandTotal);
+            }
+            }
+                });
 
     }
-
     public void dayChange(){
 
         textViewDayTotal1.setText("");
@@ -186,68 +351,15 @@ public class MainActivity extends AppCompatActivity {
         editTextFat9.setText("");
         editTextFat10.setText("");
         editTextFat11.setText("");
-
     }
 
-    public void rateCalculation(){
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
 
-        quantity1 = Integer.parseInt(editTextQuantiy1.getText().toString());
-        quantity2 = Integer.parseInt(editTextQuantiy2.getText().toString());
-        quantity3 = Integer.parseInt(editTextQuantiy3.getText().toString());
-        quantity4 = Integer.parseInt(editTextQuantiy4.getText().toString());
-        quantity5 = Integer.parseInt(editTextQuantiy5.getText().toString());
-        quantity6 = Integer.parseInt(editTextQuantiy6.getText().toString());
-        quantity7 = Integer.parseInt(editTextQuantiy7.getText().toString());
-        quantity8 = Integer.parseInt(editTextQuantiy8.getText().toString());
-        quantity9 = Integer.parseInt(editTextQuantiy9.getText().toString());
-        quantity10 = Integer.parseInt(editTextQuantiy10.getText().toString());
-        quantity11 = Integer.parseInt(editTextQuantiy11.getText().toString());
+    public void saveData(){
+        sharedPreferences = getSharedPreferences("saveData", Context.MODE_PRIVATE);
 
-        fat1 = Integer.parseInt(editTextFat1.getText().toString());
-        fat2 = Integer.parseInt(editTextFat2.getText().toString());
-        fat3 = Integer.parseInt(editTextFat3.getText().toString());
-        fat4 = Integer.parseInt(editTextFat4.getText().toString());
-        fat5 = Integer.parseInt(editTextFat5.getText().toString());
-        fat6 = Integer.parseInt(editTextFat6.getText().toString());
-        fat7 = Integer.parseInt(editTextFat7.getText().toString());
-        fat8 = Integer.parseInt(editTextFat8.getText().toString());
-        fat9 = Integer.parseInt(editTextFat9.getText().toString());
-        fat10 = Integer.parseInt(editTextFat10.getText().toString());
-        fat11 = Integer.parseInt(editTextFat11.getText().toString());
-
-        milkRate = Integer.parseInt(editTextMilkRateEditor.getText().toString());
-
-        int day1 = (milkRate * quantity1 * fat1) / 10;
-        int day2 = (milkRate * quantity2 * fat2) / 10;
-        int day3 = (milkRate * quantity3 * fat3) / 10;
-        int day4 = (milkRate * quantity4 * fat4) / 10;
-        int day5 = (milkRate * quantity5 * fat5) / 10;
-        int day6 = (milkRate * quantity6 * fat6) / 10;
-        int day7 = (milkRate * quantity7 * fat7) / 10;
-        int day8 = (milkRate * quantity8 * fat8) / 10;
-        int day9 = (milkRate * quantity9 * fat9) / 10;
-        int day10 = (milkRate * quantity10 * fat10) / 10;
-        int day11 = (milkRate * quantity11 * fat11) / 10;
-
-        textViewDayTotal1.setText(day1);
-        textViewDayTotal1.setText(day2);
-        textViewDayTotal1.setText(day3);
-        textViewDayTotal1.setText(day4);
-        textViewDayTotal1.setText(day5);
-        textViewDayTotal1.setText(day6);
-        textViewDayTotal1.setText(day7);
-        textViewDayTotal1.setText(day8);
-        textViewDayTotal1.setText(day9);
-        textViewDayTotal1.setText(day10);
-        textViewDayTotal1.setText(day11);
-
-        totalQuantity = (quantity1 + quantity2 + quantity3 + quantity4 + quantity5 + quantity6 + quantity7 + quantity8+ quantity9 + quantity10+ quantity11);
-        textViewQuantityTotal.setText(totalQuantity);
-
-//        fatPercentage = ( fat1 + fat2 + fat3 +fat4 +fat5 +fat6 +fat7 +fat8 + fat9 + fat10 + fat11) / 11;
-//        textViewFatTotal.setText(fatPercentage);
-
-        grandTotal = Double.valueOf( day1 + day2 + day3 + day4 + day5 + day6 + day7 + day8 + day9 + day10 + day11);
-        textViewGrandTotal.setText((int) grandTotal);
     }
 }
